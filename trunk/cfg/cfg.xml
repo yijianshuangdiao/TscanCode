@@ -133,6 +133,9 @@
     <id name="unsafefunc" value="1">
       <subid name="unsafeFunctionUsage" value="0" severity="Warning" rule_name="高危函数" desc="使用高危函数可能造成缓冲区溢出等漏洞，影响程序安全"/>
     </id>
+    <id name="deprecatedfunc" value="1">
+      <subid name="deprecatedFunctionUsage" value="1" severity="Serious" rule_name="废弃函数" desc="使用已标记废弃的函数，存在隐患"/>
+    </id>
     <id name="uninit" value="1">
       <subid name="uninitstring" value="0" severity="Serious" rule_name="字符串初始化错误" desc="变量未初始化，可能存在分支没有初始化变量"/>
       <subid name="uninitvar" value="1" severity="Serious" rule_name="变量未初始化" desc="变量未初始化，或者不是所有的分支都初始化"/>

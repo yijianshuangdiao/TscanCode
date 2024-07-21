@@ -157,6 +157,7 @@ public:
 		BufferOverrun,
 		MemoryLeak,
 		UnsafeFunc,
+        DeprecatedFunc,
 		Unity,
 		UserCustom,
 		Uninit
@@ -182,6 +183,8 @@ public:
 			return "memleak";
 		case ErrorType::UnsafeFunc:
 			return "unsafefunc";
+        case ErrorType::DeprecatedFunc:
+            return "deprecatedfunc";
 		case ErrorType::Unity:
 			return "unity";
 		case ErrorType::UserCustom:

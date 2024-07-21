@@ -406,6 +406,30 @@ void CheckTSCSuspicious::unsafeFunctionUsageError(const Token *tok, const std::s
 	reportError(tok, Severity::information, ErrorType::UnsafeFunc, "unsafeFunctionUsage", "High Risk to  use " + unsafefuncname + "(). It must be replaced by " + safefuncname, ErrorLogger::GenWebIdentity(unsafefuncname));
 }
 
+void CheckTSCSuspicious::deprecatedFunctionUsage()
+{
+	std::map<std::string, std::string> _funcLists;
+
+	_funcLists.insert(valType("Print", "DY_LOG"));
+
+	for (std::map<std::string, std::string>::const_iterator func_it = _funcLists.begin(); func_it != _funcLists.end(); ++func_it)
+	{
+		for (const Token* tok = _tokenizer->tokens(); tok; tok = tok->next())
+		{
+			if (!Token::Match(tok, func_it->first.c_str()))
+				continue;
+			const std::string& deprecatedFunc = tok->str();
+			const std::string replaceFunc = func_it->second;
+			deprecatedFunctionUsageError(tok, deprecatedFunc, replaceFunc);
+		}
+	}
+}
+
+void CheckTSCSuspicious::deprecatedFunctionUsageError(const Token* tok, const std::string& deprecatedfuncname, const std::string& replacefuncname)
+{
+	reportError(tok, Severity::information, ErrorType::DeprecatedFunc, "deprecatedFunctionUsage", "The '" + deprecatedfuncname + "()' method is deprecated. It must be replaced by '" + replacefuncname + "()'.", ErrorLogger::GenWebIdentity(deprecatedfuncname));
+}
+
 
 void CheckTSCSuspicious::checkUnconditionalBreakinLoop()
 {

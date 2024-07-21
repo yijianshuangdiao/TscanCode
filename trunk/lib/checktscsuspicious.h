@@ -64,6 +64,7 @@ public:
 		checkTSCSuspicious.checkboolFuncReturn();
 		checkTSCSuspicious.checkNestedLoop();
 		checkTSCSuspicious.unsafeFunctionUsage();
+		checkTSCSuspicious.deprecatedFunctionUsage();
 		checkTSCSuspicious.checkRenameLocalVariable();
 				
 				
@@ -145,6 +146,9 @@ public:
 	void unsafeFunctionUsage();
 	void unsafeFunctionUsageError(const Token *tok, const std::string& unsafefuncname,const std::string& safefuncname);
 
+	/*custom rule: deprecatedFunction*/
+	void deprecatedFunctionUsage();
+	void deprecatedFunctionUsageError(const Token* tok, const std::string& deprecatedfuncname, const std::string& replacefuncname);
 
 	void checkRenameLocalVariable();
 	void RenameLocalVariableError(const Token *tok);
